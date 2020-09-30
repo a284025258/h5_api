@@ -36,10 +36,10 @@ class TestVerify(unittest.TestCase):
         self.userid = jsonpath(response.json(), "$..userid")[0]
 
     def test_verify_ad(self):
-        confignovelh5_url = "http://m.bbxs8.com/api/getconfignovelh5"
+        confignovelh5_url = "http://m.mokabook.cn/api/getconfiggameh5"
         confignovelh5_api = confignovelh5_url.split("/")[-1]
         confignovelh5_params = {
-            "adHost": "m.bbxs1.com",  # 参数化
+            "adHost": "m.bbxs8.com",  # 参数化
             "cid": "mk1099",
             "platform": "distribute",
             "s_access": "4G",
@@ -72,15 +72,17 @@ class TestVerify(unittest.TestCase):
             pv_url = jsonpath(list5_response.json(), "$..pv")[1] + "&did=" + str(list5_params.get("did"))
             pv_response = requests.get(url=pv_url)
             log.info(pv_response.json())
-            if third_ad_platforms == "TUIA":
-                tuia_params = {
-                    "appKey": third_key,  # 参数化
-                    "adslotId": ad_id  # 参数化
-                }
-                tuia_response = requests.get(url="https://engine.seefarger.com/index/serving", params=tuia_params)
-                log.info(tuia_response.json())
-                self.assertEqual("0", jsonpath(tuia_response.json(), "$..code")[0])
-                self.assertEqual(True, jsonpath(tuia_response.json(), "$..success")[0])
+            log.info(jsonpath(list5_response.json(), "$..clist"))
+            self.assertIsNotNone("0", jsonpath(list5_response.json(), "$..clist")[0])
+            # if third_ad_platforms == "TUIA":
+            #     tuia_params = {
+            #         "appKey": third_key,  # 参数化
+            #         "adslotId": ad_id  # 参数化
+            #     }
+            #     tuia_response = requests.get(url="https://engine.seefarger.com/index/serving", params=tuia_params)
+            #     log.info(tuia_response.json())
+            #     self.assertEqual("0", jsonpath(tuia_response.json(), "$..code")[0])
+            #     self.assertEqual(True, jsonpath(tuia_response.json(), "$..success")[0])
 
     def create_sign(self, param, key, api):
         hashlib_obj = hashlib.md5()

@@ -5,9 +5,10 @@ from common.constant import CASES_DIR, REPORTS_DIR
 # import testcases.test_register as test_register
 # import testcases.test_login as test_login
 import testcases.test_verify_tuia as test_verify_tuia
-import testcases.test_login2 as test_login2
+import testcases.test_verify as test_verify
 import os
 import time
+
 
 log.info('---------------------------------------测试开始---------------------------------------')
 # 创建测试套件
@@ -20,8 +21,8 @@ loader = unittest.TestLoader()
 # 从模块中加载测试用例
 # suite.addTest(loader.loadTestsFromModule(test_login))
 # suite.addTest(loader.loadTestsFromModule(test_add_project))
-suite.addTest(loader.loadTestsFromModule(test_verify_tuia))
-suite.addTest(loader.loadTestsFromModule(test_login2))
+# suite.addTest(loader.loadTestsFromModule(test_verify_tuia))
+suite.addTest(loader.loadTestsFromModule(test_verify))
 # HTMLTestRunner 生成测试报告
 # 时间戳
 name = time.strftime("[%Y-%m-%d] [%H-%M-%S]", time.localtime())+' report.html'

@@ -66,7 +66,7 @@ class ReadExcel(object):
             cases.append(case_data)
         return cases
 
-    def write_data(self, row, column, value):
+    def write_data(self, row: int, column: int, value: str):
         """
         写入数据
         :param row:
